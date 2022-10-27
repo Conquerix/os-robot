@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Robot project</title>
+    <meta name="description" content="" />
+    <meta name="author" content="Tooplate" />
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Additional CSS Files -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="assets/css/tooplate-style.css" />
+    <link rel="stylesheet" href="assets/css/owl.css" />
+    <link rel="stylesheet" href="assets/css/lightbox.css" />
+  </head>
+
+  <body>
+    <div id="page-wraper">
+      <!-- Sidebar Menu -->
+      <div class="responsive-nav">
+        <i class="fa fa-bars" id="menu-toggle"></i>
+        <div id="menu" class="menu">
+          <i class="fa fa-times" id="menu-close"></i>
+          <div class="container">
+            <div class="image">
+              <a href="#"><img src="assets/images/logo-image.jpg" alt=" " /></a>
+            </div>
+            <div class="author-content">
+              <h4>L'Astar</h4>
+              <span>Pierre Fournier, Naïs Schietecatte, Chloé Bon</span>
+            </div>
+            <nav class="main-nav" role="navigation">
+              <ul class="main-menu">
+                <li><a href="#section1">Architecture of the robot</a></li>
+                <li><a href="#section2">Pseudo code</a></li>
+                <li><a href="#section3">Photo Gallery</a></li>
+                
+              </ul>
+            </nav>
+            
+            
+          </div>
+        </div>
+      </div>
+
+      <section class="section about-me" data-section="section1">
+        <div class="container">
+        <div class="top-header">
+        	<img src="assets/images/race_robot.jpg" alt="robot race" />
+        </div>
+          <div class="section-heading">
+          
+            <h2>Robot Project Fall 2020</h2>
+            <div class="line-dec"></div>
+                     </div>
+          <div class="right-image-post">
+            <div class="row">
+ 
+              <div class="col-md-8">
+                <div class="left-text">
+                  <h4>Architecture of the robot</h4>
+                  <p>The robot is 15 cm * 28 cm. It has two driving wheels. Each wheel has its own motor. The robot also uses a small metal ball that serves both as a third wheel and counter weight. It uses a sonar, which is also controlled by its own motor.</p>
+                  <p>The robot has access to a map of the circuit, which contains information about the walls and the obstacles. Then it uses an algorithm called A* to determine rapidly the path it  must take to do a tour.
+                    <p>The sonar, located at the front of the robot, allows the robot to spot obstacles, which might either be other robots or physical/static obstacles. When the robot spots a new obstacle, it updates its map of the circuit.</p>
+                    </p>
+                    <p>The robot is able to determine its position in the circuit thanks to motor control of both wheels. Its position is defined by two numbers x and y, as well as its orientation or direction in the stadium (which is an angle).</p>
+                  
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="right-image">
+                  <img src="assets/images/robot6.jpg" alt=" " />
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="left-image-post">
+            <div class="row">
+            
+              <div class="col-md-4">
+                <div class="left-image">
+                  <img src="assets/images/astar.jpg" alt="Astar" />
+                </div>
+              </div>
+              
+              <div class="col-md-8">
+                <div class="right-text">
+                  <h4>Algorithms used</h4>
+                  <h4> First algorithm : Race without opponents </h4>
+
+                  <p> We create a map of the stadium and divide it into 6 zones called UP_RIGHT, UP_LEFT, MIDDLE_RIGHT etc… The robot knows the zone it starts in (generally the starting point of the stadium). Then, the robot is programmed to behave differently according to the zone it is in. To orient itself in the zone, it uses both the sonar and the gyroscope. It does not use the compass since it is not reliable due to the working environment(the lab). The robot knows when it changes zones, and its behavior changes. </p>
+                    <P> For example, when the robot is in zone MIDDLE_LEFT, it must go straight forward to access UP_LEFT. If the gyro angle states that the robot is not going in the right direction (aka the gyro angle is not in the predefined interval), then the robot turns left or right. When the robot detects that it is close enough to the wall, thanks to the sonar, it knows it has reached the UP_LEFT zone.</p>
+                      <h4> Second algorithm : with opponents, A*</h4>
+                      <p>The robot has access to a map of the circuit, which contains information about the walls and the obstacles. Then it uses an algorithm called A* to determine rapidly the path it  must take to do a tour.
+                  </p>
+                  
+                  <p>The robot has access to a map of the circuit, which contains information about the walls and the obstacles. Then it uses an algorithm called A* to determine rapidly the path it  must take to do a tour.
+                  </p>
+                  <p>We give a robot a starting point and a destination. By using these, the A* algorithm finds the shortest (or close to)  path. How does the algorithm works? At each step, it choses the “closest” node to move to, until the destination is reached. But how do we define “closest”? 
+                  </p>
+                  <p>To find the next node, the algorithm calculates the sum of two things :
+                  </p>
+                  <p> -the length of the path between the starting point and the node 
+                  </p>
+                  <p>-the length of the path between the node and the destination
+                  </p>
+
+                  <p> Then the algorithm chooses the node that has the smallest sum of lengths. The above lengths of course are not exact because there can be new obstacles etc but since we don’t need a perfect precision the algorithm works just fine. 
+                  </p>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section my-services" data-section="section2">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Pseudo code</h2>
+            <div class="line-dec"></div>
+            <p> A* Search Algorithm            </p>
+            <p> 1.  We initialize the open list            </p>
+            <p> 2.  We initialize the closed list and put the starting point/node on the open list</p>
+            <p> 3.  while the open list is not empty            </p>
+                  <p>  a) find the node with the smallest sum of length on the open list, call it "S            </p>
+                  <p> b) pop S off the open list                  </p>
+                  <p> c) generate S's 8 successors(all the nodes around) and set their parents to S                  </p>
+            <p> d) Then, for each successor :            </p>
+            <p>i) if the successor is the goal, we stop the search            </p>
+<p> ii) if a point with the same position as successor is in the OPEN list which has a lower sum of length than the successor, we skip it</p>
+<p> iii) if a point with the same position as the successor is in the CLOSED list which has a lower  sum than successor, we skip this successor</p>          
+<p>  otherwise, we add  it to the open list end (for loop) </p>
+<p>   e) push S on the closed list end (while loop)
+</p>
+</div>
+          <div class="row">
+            
+            <div class="col-md-6">
+              
+            </div>
+            <div class="col-md-6">
+            
+            <div class="col-md-6">
+              
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section my-work" data-section="section3">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Photo gallery</h2>
+            <div class="line-dec"></div>
+            <span>Here are a few pictures of the robot.</span>
+          </div>
+          <div class="row">
+            <div class="isotope-wrapper">
+              <form class="isotope-toolbar">
+                
+                >
+              </form>
+              <div class="isotope-box">
+                <div class="isotope-item" data-type=" ">
+                  <figure class="snip1321">
+                    <img src="assets/images/robot2.jpg" alt="robot2" />
+                  </figure>
+                </div>
+
+                <div class="isotope-item" data-type=" ">
+                  <figure class="snip1321">
+                    <img src="assets/images/robot6.jpg" alt="robot6" />
+                  </figure>
+                </div>
+
+                <div class="isotope-item" data-type="">
+                  <figure class="snip1321">
+                    <img src="assets/images/robot3.jpg" alt="robot3" />
+                  </figure>
+                </div>
+
+                <div class="isotope-item" data-type="">
+                  <figure class="snip1321">
+                    <img src="assets/images/flag.jpg" alt="flag" />
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h4> Source code and work organization</h4>
+        <p> We each wrote pieces of the source code, which can be find in details on our gitlab : </p>
+        <p><a href="https://gitlab.eurecom.fr/fournipi/os-robot-project.git"></a></p>
+        <p> Our git contains all the important information about the code, how to compile it and run it.</p>
+        <p> We tried to work as much as possible as a group to debug and test the code, via zoom and in the lab.</p>
+
+    </div>
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script>
+      //according to loftblog tut
+      $(".main-menu li:first").addClass("active");
+
+      var showSection = function showSection(section, isAnimate) {
+        var direction = section.replace(/#/, ""),
+          reqSection = $(".section").filter(
+            '[data-section="' + direction + '"]'
+          ),
+          reqSectionPos = reqSection.offset().top - 0;
+
+        if (isAnimate) {
+          $("body, html").animate(
+            {
+              scrollTop: reqSectionPos
+            },
+            800
+          );
+        } else {
+          $("body, html").scrollTop(reqSectionPos);
+        }
+      };
+
+      var checkSection = function checkSection() {
+        $(".section").each(function() {
+          var $this = $(this),
+            topEdge = $this.offset().top - 80,
+            bottomEdge = topEdge + $this.height(),
+            wScroll = $(window).scrollTop();
+          if (topEdge < wScroll && bottomEdge > wScroll) {
+            var currentId = $this.data("section"),
+              reqLink = $("a").filter("[href*=\\#" + currentId + "]");
+            reqLink
+              .closest("li")
+              .addClass("active")
+              .siblings()
+              .removeClass("active");
+          }
+        });
+      };
+
+      $(".main-menu").on("click", "a", function(e) {
+        e.preventDefault();
+        showSection($(this).attr("href"), true);
+      });
+
+      $(window).scroll(function() {
+        checkSection();
+      });
+    </script>
+  </body>
+</html>

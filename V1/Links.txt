@@ -1,0 +1,14 @@
+Ultrasonic Sensor modes :
+https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/sensor_data.html#lego-ev3-us
+
+Gyro Sensor modes :
+https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/sensor_data.html#lego-ev3-gyro
+
+Compass Modes :
+https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/sensor_data.html#hitechnic-nxt-compass-sensor
+
+Brick Library :
+https://in4lio.github.io/ev3dev-c/group__brick.html#ga4c9bb14a85ba5289a653b4030b40a897
+
+Enum used for modes :
+https://github.com/in4lio/ev3dev-c/blob/stretch/source/ev3/ev3_sensor.h
